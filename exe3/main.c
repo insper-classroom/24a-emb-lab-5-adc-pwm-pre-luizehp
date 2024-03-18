@@ -25,17 +25,21 @@ void data_task(void *p) {
 
 void process_task(void *p) {
     int data = 0;
-
+    int A[6] = {0};
+    int y;
     while (true) {
         if (xQueueReceive(xQueueData, &data, 100)) {
             // implementar filtro aqui!
-
-
-
-
-            // deixar esse delay!
+            A[0]=A[1];
+            A[1]=A[2];
+            A[2]=A[3];
+            A[3]=A[4];
+            A[4]=data;
+            y=(A[0]+A[1]+A[2]+A[3]+A[4])/5;
+            printf("%d\n",y);
+          
             vTaskDelay(pdMS_TO_TICKS(50));
-        }
+        } else printf("ERRO\n");
     }
 }
 
